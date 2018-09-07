@@ -32,4 +32,3 @@ alias gsl='git stash list'
 alias gsp='git stash pop'
 alias gss='git stash save'
 alias wip='git commit -am WIP'
-

@@ -46,7 +46,7 @@ case "$OSTYPE" in
   ;;
   *)
     echo "unknown: $OSTYPE"
-    ;;
+  ;;
 esac
 
 common_tail

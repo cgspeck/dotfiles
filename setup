@@ -4,4 +4,3 @@ ln -s $(pwd)/bash_env $HOME/.bash_env
 ln -s $(pwd)/bash_custom_aliases $HOME/.bash_custom_aliases
 
 echo "Please add 'source ~/.bash_env' to ~/.bash_rc (Ubuntu) or ~/.bash_profile (OSX)"
-
