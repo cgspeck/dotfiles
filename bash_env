@@ -42,6 +42,12 @@ ubuntu() {
   else
     echo "Please install chruby via the package manager"
   fi
+
+  if [ -f "$HOME/.nodenv/bin/nodenv" ]; then
+    export PATH="$HOME/.nodenv/bin:$PATH"
+  else
+    echo "Please install nodenv to ~/.nodenv"
+  fi
 }
 
 common
