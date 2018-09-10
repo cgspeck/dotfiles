@@ -1,36 +1,36 @@
 
 common() {
-    # ruby
-    export RUBY_ENV=development
-    # python
-    # export workon_home=~/.virtualenvs
-    #source /opt/boxen/homebrew/bin/virtualenvwrapper.sh
-    if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-        __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-        source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-    fi
+  # ruby
+  export RUBY_ENV=development
+  # python
+  # export workon_home=~/.virtualenvs
+  #source /opt/boxen/homebrew/bin/virtualenvwrapper.sh
 
-    # aliases
-    source ~/.bash_custom_aliases
-    # z directory jumper
-    source ~/src/z/z.sh
+  # aliases
+  source ~/.bash_custom_aliases
+  # z directory jumper
+  source ~/src/z/z.sh
 
-    alias heart="echo -e \"\xe2\x9d\xa4\""
-    export AWS_DEFAULT_REGION=us-east-1
-    export AWS_REGION=us-east-1
+  alias heart="echo -e \"\xe2\x9d\xa4\""
+  export AWS_DEFAULT_REGION=us-east-1
+  export AWS_REGION=us-east-1
 }
 
 common_tail() {
-    eval "$(nodenv init -)"
+  eval "$(nodenv init -)"
 }
 
 osx() {
-    source /usr/local/opt/chruby/share/chruby/chruby.sh
-    source /usr/local/opt/chruby/share/chruby/auto.sh
+  if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+  fi
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  source /usr/local/opt/chruby/share/chruby/auto.sh
 }
 
 linux() {
-    echo "TODO: set chruby (chruby.sh & auto.sh) source lines"
+  echo "TODO: set chruby (chruby.sh & auto.sh) source lines"
 }
 
 common
