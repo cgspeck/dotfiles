@@ -1,0 +1,4 @@
+#! /bin/bash -e
+cd /tmp
+git clone git@github.com:magicmonty/bash-git-prompt.git
+sudo mv /tmp/bash-git-prompt /opt

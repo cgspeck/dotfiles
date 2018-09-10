@@ -1,19 +1,18 @@
 
 common() {
-  # ruby
+  export AWS_DEFAULT_REGION=us-east-1
+  export AWS_REGION=us-east-1
   export RUBY_ENV=development
-  # python
-  # export workon_home=~/.virtualenvs
-  #source /opt/boxen/homebrew/bin/virtualenvwrapper.sh
 
   # aliases
   source ~/.bash_custom_aliases
-  # z directory jumper
-  source ~/src/z/z.sh
 
-  alias heart="echo -e \"\xe2\x9d\xa4\""
-  export AWS_DEFAULT_REGION=us-east-1
-  export AWS_REGION=us-east-1
+  # z directory jumper
+  if [ -f "$HOME/src/z/z.sh" ]; then
+    source ~/src/z/z.sh
+  else
+    echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
+  fi
 }
 
 common_tail() {
@@ -29,8 +28,20 @@ osx() {
   source /usr/local/opt/chruby/share/chruby/auto.sh
 }
 
-linux() {
-  echo "TODO: set chruby (chruby.sh & auto.sh) source lines"
+ubuntu() {
+  if [ -f "/opt/bash-git-prompt/gitprompt.sh" ]; then
+    __GIT_PROMPT_DIR=/opt/bash-git-prompt
+    source "/opt/bash-git-prompt/gitprompt.sh"
+  else
+    echo "Please install gitprompt using the install script in dotfiles"
+  fi
+
+  if [ -f "/usr/local/share/chruby/chruby.sh" ]; then
+    source /usr/local/share/chruby/chruby.sh
+    source /usr/local/share/chruby/auto.sh
+  else
+    echo "Please install chruby via the package manager"
+  fi
 }
 
 common

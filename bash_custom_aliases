@@ -32,3 +32,5 @@ alias gsl='git stash list'
 alias gsp='git stash pop'
 alias gss='git stash save'
 alias wip='git commit -am WIP'
+
+alias heart="echo -e \"\xe2\x9d\xa4\""
