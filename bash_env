@@ -1,5 +1,5 @@
 
-common() {
+__dotfiles__common() {
   if [ -f "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
   fi
@@ -19,11 +19,11 @@ common() {
   fi
 }
 
-common_tail() {
+__dotfiles__common_tail() {
   eval "$(nodenv init -)"
 }
 
-osx() {
+__dotfiles__osx() {
   if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
     source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
@@ -32,7 +32,7 @@ osx() {
   source /usr/local/opt/chruby/share/chruby/auto.sh
 }
 
-ubuntu() {
+__dotfiles__ubuntu() {
   if [ -f "/opt/bash-git-prompt/gitprompt.sh" ]; then
     __GIT_PROMPT_DIR=/opt/bash-git-prompt
     source "/opt/bash-git-prompt/gitprompt.sh"
@@ -54,22 +54,22 @@ ubuntu() {
   fi
 }
 
-common
+__dotfiles__common
 
 case "$OSTYPE" in
   darwin*)
     echo "Setting up OSX (Homebrew) environment"
-    osx
+    __dotfiles__osx
   ;;
   linux*)
     echo "Setting up Ubuntu environment"
-    ubuntu
+    __dotfiles__ubuntu
   ;;
   *)
     echo "unknown: $OSTYPE"
   ;;
 esac
 
-common_tail
+__dotfiles__common_tail
 
 [ -r ~/.bash_local ] && source ~/.bash_local
