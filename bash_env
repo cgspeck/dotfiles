@@ -1,5 +1,9 @@
 
 common() {
+  if [ -f "$HOME/bin" ]; then
+    export PATH="$HOME/bin:$PATH"
+  fi
+
   export AWS_DEFAULT_REGION=us-east-1
   export AWS_REGION=us-east-1
   export RUBY_ENV=development
