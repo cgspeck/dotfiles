@@ -18,7 +18,7 @@ __dotfiles__common() {
 }
 
 __dotfiles__common_tail() {
-  eval "$(nodenv init -)"
+  type nodenv 2>/dev/null && eval "$(nodenv init -)" || echo "Nodenv is not installed"
 }
 
 __dotfiles__osx() {
