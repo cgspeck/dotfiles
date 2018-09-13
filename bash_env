@@ -14,11 +14,7 @@ __dotfiles__common() {
   source ~/.bash_custom_aliases
 
   # z directory jumper
-  if [ -f "$HOME/src/z/z.sh" ]; then
-    source ~/src/z/z.sh
-  else
-    echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
-  fi
+  [ -f "$HOME/src/z/z.sh" ] && source ~/src/z/z.sh || echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
 }
 
 __dotfiles__common_tail() {
