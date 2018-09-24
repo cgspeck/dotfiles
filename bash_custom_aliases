@@ -8,6 +8,7 @@ alias edk='emacsclient -e "(kill-emacs)"'
 
 alias dmr="docker-machine restart local && eval \$(docker-machine env local)"
 
+alias b="bundle $@"
 alias be="bundle exec $@"
 
 alias ownrepo="git config --local user.email 'cgspeck@gmail.com'"
