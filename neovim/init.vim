@@ -6,15 +6,19 @@ Plug 'Numkil/ag.nvim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'jiangmiao/auto-pairs' " insert or delete brackets, parens, quotes in pair
 Plug 'airblade/vim-gitgutter' " shows git diff in the gutter
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
 
 """ Theme
 syntax on
-set background=dark
-colorscheme solarized8_high
+" set background=dark
+colorscheme solarized8_light
 
+" let g:airline_solarized_bg='dark'
+let g:airline_theme='solarized'
 
 """ Config
 
