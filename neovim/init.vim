@@ -8,7 +8,8 @@ Plug 'jiangmiao/auto-pairs' " insert or delete brackets, parens, quotes in pair
 Plug 'airblade/vim-gitgutter' " shows git diff in the gutter
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'tpope/vim-commentary'
+Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 
@@ -34,7 +35,7 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 " Remove trailing spaces when saved
-autocmd BufWritePre * %s/\s\+$//e
+" autocmd BufWritePre * %s/\s\+$//e
 
 
 """ Plugin config
