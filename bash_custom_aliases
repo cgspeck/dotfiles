@@ -40,3 +40,4 @@ alias heart="echo -e \"\xe2\x9d\xa4\""
 # thanks Seb - command line safe search and replace across a project with vim
 alias vim-replace='ag -l "$0" && vim -c "bufdo %s/$0/$1/gc" $(ag -l "$0")'
 
+alias update-dotfiles='cd ~/src/dotfiles && git pull'
