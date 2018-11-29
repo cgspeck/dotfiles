@@ -3,5 +3,6 @@
 [ ! -L $HOME/.bash_env ] && ln -s $(pwd)/bash_env $HOME/.bash_env
 [ ! -L $HOME/.bash_custom_aliases ] && ln -s $(pwd)/bash_custom_aliases $HOME/.bash_custom_aliases
 [ ! -L $HOME/.tmux.conf ] && ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
+[ ! -L $HOME/.irbrc ] && ln -s $(pwd)/irbrc $HOME/.irbrc
 
 echo "Please add 'source ~/.bash_env' to ~/.bash_rc (Ubuntu) or ~/.bash_profile (OSX)"
