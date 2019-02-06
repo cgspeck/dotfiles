@@ -5,4 +5,7 @@
 [ ! -L $HOME/.tmux.conf ] && ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 [ ! -L $HOME/.irbrc ] && ln -s $(pwd)/irbrc $HOME/.irbrc
 
+# point Insomnia to Dropbox
+[ -d $HOME/Library/Application\ Support ] && [ -d $HOME/Dropbox/insomnia ] && ln -s $HOME/Dropbox/insomnia $HOME/Library/Application\ Support/Insomnia
+
 echo "Please add 'source ~/.bash_env' to ~/.bash_rc (Ubuntu) or ~/.bash_profile (OSX)"
