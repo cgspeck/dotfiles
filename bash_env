@@ -28,6 +28,7 @@ __dotfiles__osx() {
   fi
   source /usr/local/opt/chruby/share/chruby/chruby.sh
   source /usr/local/opt/chruby/share/chruby/auto.sh
+  if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 }
 
 __dotfiles__ubuntu() {
