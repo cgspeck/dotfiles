@@ -16,8 +16,8 @@ call plug#end()
 
 """ Theme
 syntax on
-" set background=dark
-colorscheme solarized8_dark_flat
+set background=dark
+colorscheme solarized8_flat
 
 " let g:airline_solarized_bg='dark'
 let g:airline_theme='solarized'
