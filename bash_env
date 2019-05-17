@@ -1,7 +1,11 @@
 
 __dotfiles__common() {
-  if [ -f "$HOME/bin" ]; then
+  if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
+  fi
+
+  if [ -d "$HOME/scripts" ]; then
+    export PATH="$HOME/scripts:$PATH"
   fi
 
   export AWS_DEFAULT_REGION=us-east-1
