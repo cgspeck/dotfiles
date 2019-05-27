@@ -26,6 +26,13 @@ __dotfiles__common_tail() {
 }
 
 __dotfiles__osx() {
+  if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+    . "/usr/local/etc/profile.d/bash_completion.sh"
+    [[ kubectl ]] && source /dev/stdin <<<"$(kubectl completion bash)" || echo "Kubectl is not installed"
+  else
+    echo "Please install bash-completion"
+  fi
+
   if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
     __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
     source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
@@ -59,6 +66,12 @@ __dotfiles__ubuntu() {
     export PATH="$HOME/.nodenv/bin:$PATH"
   else
     echo "Please install nodenv to ~/.nodenv"
+  fi
+
+  if [ type _init_completion ]; then
+    [ kubectl ] && source <(kubectl completion bash) || echo "Kubectl is not installed"
+  else
+    echo "Please install bash-completion"
   fi
 }
 
