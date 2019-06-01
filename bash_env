@@ -69,7 +69,7 @@ __dotfiles__ubuntu() {
   fi
 
   if type _init_completion > /dev/null; then
-    kubectl > /dev/null && source <(kubectl completion bash) || echo "Kubectl is not installed"
+    kubectl > /dev/null 2>&1 && source <(kubectl completion bash) || echo "Kubectl is not installed"
   else
     echo "Please install bash-completion"
   fi
