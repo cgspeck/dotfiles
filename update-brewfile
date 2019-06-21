@@ -1,2 +1,6 @@
 #! /bin/bash -e
 brew bundle dump -f
+sed -i'' -e '/tap "redbubble.*/d' Brewfile
+sed -i'' -e '/brew "dnsmasq", restart_service: true/d' Brewfile
+sed -i'' -e '/brew "imagemagick@6"/d' Brewfile
+sed -i'' -e '/brew "kubernetes-cli".*/d' Brewfile
