@@ -23,7 +23,7 @@ __dotfiles__common() {
 
 __dotfiles__common_tail() {
   type nodenv 2>/dev/null && eval "$(nodenv init -)" || echo "Nodenv is not installed"
-  which direnv 2>/dev/null && eval "$(direnv hook bash)" || echo "Direnv is not installed"
+  which direnv 1>/dev/null 2>&1 && eval "$(direnv hook bash)" || echo "Direnv is not installed"
 }
 
 __dotfiles__osx() {
