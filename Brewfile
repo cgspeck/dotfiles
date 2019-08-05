@@ -21,6 +21,7 @@ brew "geoip"
 brew "gettext", link: true
 brew "git"
 brew "libffi"
+brew "gnupg"
 brew "htop"
 brew "ipython"
 brew "jq"
