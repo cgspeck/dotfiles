@@ -11,6 +11,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 
@@ -37,7 +38,10 @@ set foldlevel=1         "this is just what i use
 
 " Remove trailing spaces when saved
 " autocmd BufWritePre * %s/\s\+$//e
-
+"
+" NERDTree
+nnoremap <silent> <C-E> :NERDTreeToggle<CR>
+autocmd VimEnter * NERDTree | wincmd p
 
 """ Plugin config
 " vim-gitgutter
