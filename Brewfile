@@ -19,6 +19,7 @@ brew "direnv"
 brew "fzf"
 brew "geoip"
 brew "gettext", link: true
+brew "ghc"
 brew "git"
 brew "libffi"
 brew "gnupg"
