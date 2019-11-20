@@ -32,6 +32,7 @@ brew "mitmproxy"
 brew "mysql", link: false
 brew "mysql-client"
 brew "mysql@5.6", link: true
+brew "ncdu"
 brew "neovim"
 brew "nginx", restart_service: true
 brew "pkg-config"
