@@ -28,6 +28,7 @@ __dotfiles__common_tail() {
 
 __dotfiles__osx() {
   if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
     . "/usr/local/etc/profile.d/bash_completion.sh"
     [[ kubectl ]] && source /dev/stdin <<<"$(kubectl completion bash)" || echo "Kubectl is not installed"
   else
