@@ -46,7 +46,7 @@ __dotfiles__osx() {
   else
     echo "Please install ruby-install and chruby via homebrew"
   fi
-  if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+  # if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 }
 
 __dotfiles__ubuntu() {
