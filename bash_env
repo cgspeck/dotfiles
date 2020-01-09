@@ -21,9 +21,26 @@ __dotfiles__common() {
   [ -f "$HOME/src/z/z.sh" ] && source ~/src/z/z.sh || echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
 }
 
+__dotfiles__gohook() {
+  if which go > /dev/null; then
+    echo "Setting up Golang"
+    export GOPATH=$HOME/go
+
+    if [ ! -d $GOPATH ]; then
+      echo "Creating $GOPATH"
+      mkdir $GOPATH
+    fi
+
+    export PATH="$PATH:$GOPATH/bin"
+  else
+    echo "Golang is not installed"
+  fi
+}
+
 __dotfiles__common_tail() {
   type nodenv 2>/dev/null && eval "$(nodenv init -)" || echo "Nodenv is not installed"
   which direnv 1>/dev/null 2>&1 && eval "$(direnv hook bash)" || echo "Direnv is not installed"
+  __dotfiles__gohook
 }
 
 __dotfiles__osx() {
