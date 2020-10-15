@@ -8,8 +8,8 @@ __dotfiles__common() {
     export PATH="$HOME/scripts:$PATH"
   fi
 
-  export AWS_DEFAULT_REGION=us-east-1
-  export AWS_REGION=us-east-1
+  export AWS_DEFAULT_REGION=ap-southeast-2
+  export AWS_REGION=ap-southeast-2
   export EDITOR=vim
   export WINEARCH=win32
   export RUBY_ENV=development
