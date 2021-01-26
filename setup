@@ -11,4 +11,4 @@
 # Ubuntu/Arch
 [ -d $HOME/.config ] && [ -d $HOME/sync/scratch/insomnia/ ] && ln -s $HOME/sync/scratch/insomnia $HOME/.config/Insomnia
 
-echo "Please add 'source ~/.bash_env' to ~/.bash_rc (Ubuntu) or ~/.bash_profile (OSX)"
+echo "Please add 'source ~/.bash_env' to ~/.bashrc (Ubuntu) or ~/.bash_profile (OSX)"
