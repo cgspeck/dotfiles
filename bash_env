@@ -88,13 +88,11 @@ __dotfiles__ubuntu() {
     echo "Please install nodenv to ~/.nodenv"
   fi
 
-  if ! which pyenv 1>/dev/null ; then
-    if [ -f "$HOME/.poetry/env" ]; then
-      export PATH="$HOME/.poetry/bin:$PATH"
-      source $HOME/.poetry/env
-    else
-      echo "Please install Poetry - https://python-poetry.org/docs/"
-    fi
+  if [ -f "$HOME/.poetry/env" ]; then
+    export PATH="$HOME/.poetry/bin:$PATH"
+    source $HOME/.poetry/env
+  else
+    echo "Please install Poetry - https://python-poetry.org/docs/"
   fi
 
   if type _init_completion > /dev/null; then
