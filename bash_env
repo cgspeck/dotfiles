@@ -112,6 +112,10 @@ __dotfiles__ubuntu() {
   else
     echo "Please install bash-completion"
   fi
+
+  if systemctl status swagger-editor --no-pager > /dev/null 2>&1; then
+    echo -e "\nLocal Swagger server available.\n Start with 'systemctl start swagger-editor'\n then browse to: http://127.0.0.1:9898/\n"
+  fi
 }
 
 __dotfiles__common
