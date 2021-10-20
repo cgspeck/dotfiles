@@ -21,6 +21,15 @@ __dotfiles__common() {
   [ -f "$HOME/src/z/z.sh" ] && source ~/src/z/z.sh || echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
 }
 
+__dotfiles__ruby_fallback() {
+  echo "Please install chruby via the package manager"
+  if [ ruby ]; then
+    echo "Setting up a user-based GEM_HOME"
+    export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+    export PATH="$PATH:$GEM_HOME/bin"
+  fi
+}
+
 __dotfiles__golang() {
   if which go > /dev/null; then
     echo "Setting up Golang"
@@ -75,7 +84,7 @@ __dotfiles__osx() {
     source /usr/local/opt/chruby/share/chruby/chruby.sh
     source /usr/local/opt/chruby/share/chruby/auto.sh
   else
-    echo "Please install ruby-install and chruby via homebrew"
+    __dotfiles__ruby_fallback
   fi
 }
 
@@ -91,7 +100,7 @@ __dotfiles__ubuntu() {
     source /usr/local/share/chruby/chruby.sh
     source /usr/local/share/chruby/auto.sh
   else
-    echo "Please install chruby via the package manager"
+    __dotfiles__ruby_fallback
   fi
 
   if [ -f "$HOME/.nodenv/bin/nodenv" ]; then
