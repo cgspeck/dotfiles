@@ -8,6 +8,10 @@ __dotfiles__common() {
     export PATH="$HOME/scripts:$PATH"
   fi
 
+  if [ -d "$HOME/.local/bin" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+  fi
+
   export AWS_DEFAULT_REGION=ap-southeast-2
   export AWS_REGION=ap-southeast-2
   export EDITOR=vim
@@ -50,7 +54,7 @@ __dotfiles__pyenv() {
   if which pyenv > /dev/null; then
     echo "Setting up Pyenv"
 
-    export PATH="$HOME/.pyenv/shims:$PATH"
+    export PATH="$PATH:$HOME/.pyenv/shims"
     eval "$(pyenv init -)"
   else
     echo "Pyenv is not installed"
@@ -117,8 +121,13 @@ __dotfiles__ubuntu() {
   fi
 
   if [ -f "$HOME/.poetry/env" ]; then
-    export PATH="$HOME/.poetry/bin:$PATH"
-    source $HOME/.poetry/env
+    if [ -f "$HOME/.local/bin/poetry" ]; then
+      printf "\033[0;31mWARNING: poetry was detected in .poetry and .local/bin/poetry\033[0m\n"
+      echo "The installation at ~/.poetry/bin will be ignored."
+    else
+      export PATH="$HOME/.poetry/bin:$PATH"
+      source $HOME/.poetry/env
+    fi
   else
     echo "Please install Poetry - https://python-poetry.org/docs/"
   fi
