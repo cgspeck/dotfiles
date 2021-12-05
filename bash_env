@@ -30,7 +30,7 @@ __dotfiles__ruby_fallback() {
   if [ ruby ]; then
     echo "Setting up a user-based GEM_HOME"
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-    export PATH="$PATH:$GEM_HOME/bin"
+    export PATH="$GEM_HOME/bin:$PATH"
   fi
 }
 
@@ -44,7 +44,7 @@ __dotfiles__golang() {
       mkdir $GOPATH
     fi
 
-    export PATH="$PATH:$GOPATH/bin"
+    export PATH="$GOPATH/bin:$PATH"
   else
     echo "Golang is not installed"
   fi
@@ -54,7 +54,7 @@ __dotfiles__pyenv() {
   if which pyenv > /dev/null; then
     echo "Setting up Pyenv"
 
-    export PATH="$PATH:$HOME/.pyenv/shims"
+    export PATH="$HOME/.pyenv/shims:$PATH"
     eval "$(pyenv init -)"
   else
     echo "Pyenv is not installed"
