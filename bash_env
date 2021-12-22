@@ -69,7 +69,6 @@ __dotfiles__yarn_global_bin() {
 
 
 __dotfiles__common_tail() {
-  type nodenv 2>/dev/null && eval "$(nodenv init -)" || echo "Nodenv is not installed"
   which direnv 1>/dev/null 2>&1 && eval "$(direnv hook bash)" || echo "Direnv is not installed"
   __dotfiles__golang
   __dotfiles__pyenv
@@ -114,10 +113,11 @@ __dotfiles__ubuntu() {
     __dotfiles__ruby_fallback
   fi
 
-  if [ -f "$HOME/.nodenv/bin/nodenv" ]; then
-    export PATH="$HOME/.nodenv/bin:$PATH"
+  if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
+    echo "Sourcing nvm"
+    source /usr/share/nvm/init-nvm.sh
   else
-    echo "Please install nodenv to ~/.nodenv"
+    echo "Please install nvm"
   fi
 
   if [ -f "$HOME/.poetry/env" ]; then

@@ -39,7 +39,7 @@ brew "neovim"
 brew "nginx", restart_service: true
 brew "pkg-config"
 brew "node-build"
-brew "nodenv"
+brew "nvm"
 brew "pyenv"
 brew "pyenv-virtualenv"
 brew "pyenv-virtualenvwrapper"
