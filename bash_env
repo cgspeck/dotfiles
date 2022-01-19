@@ -23,10 +23,6 @@ __dotfiles__common() {
 
   # z directory jumper
   [ -f "$HOME/src/z/z.sh" ] && source ~/src/z/z.sh || echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
-
-  if which ssh-agent 1>/dev/null 2>&1; then
-    eval $(ssh-agent)
-  fi
 }
 
 __dotfiles__ruby_fallback() {
