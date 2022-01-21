@@ -1,4 +1,3 @@
-
 __dotfiles__common() {
   if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
@@ -27,7 +26,7 @@ __dotfiles__common() {
 
 __dotfiles__ruby_fallback() {
   echo "Please install chruby via the package manager"
-  if ruby 2>/dev/null; then
+  if which ruby /dev/null 2>&1; then
     echo "Setting up a user-based GEM_HOME"
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
     export PATH="$GEM_HOME/bin:$PATH"
@@ -35,7 +34,7 @@ __dotfiles__ruby_fallback() {
 }
 
 __dotfiles__golang() {
-  if which go > /dev/null; then
+  if which go > /dev/null 2>&1; then
     echo "Setting up Golang"
     export GOPATH=$HOME/go
 
