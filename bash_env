@@ -13,7 +13,7 @@ __dotfiles__common() {
 
   export AWS_DEFAULT_REGION=ap-southeast-2
   export AWS_REGION=ap-southeast-2
-  export EDITOR=vim
+  export EDITOR=nvim
   export WINEARCH=win64
   export RUBY_ENV=development
 
@@ -60,6 +60,18 @@ __dotfiles__pyenv() {
   fi
 }
 
+__dotfiles__pipx() {
+  if which pipx > /dev/null 2>&1; then
+    echo "Setting up pipx"
+
+    export PATH="$HOME/.local/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(register-python-argcomplete pipx)"
+  else
+    echo "pipx is not installed"
+  fi
+}
+
 __dotfiles__yarn_global_bin() {
   if yarn global bin 1>/dev/null 2>&1; then
     export PATH="$(yarn global bin 2>/dev/null):$PATH"
@@ -71,6 +83,7 @@ __dotfiles__common_tail() {
   which direnv 1>/dev/null 2>&1 && eval "$(direnv hook bash)" || echo "Direnv is not installed"
   __dotfiles__golang
   __dotfiles__pyenv
+  __dotfiles__pipx
   __dotfiles__yarn_global_bin
 }
 
