@@ -26,7 +26,7 @@ __dotfiles__common() {
 
 __dotfiles__ruby_fallback() {
   echo "Please install chruby via the package manager"
-  if which ruby /dev/null 2>&1; then
+  if which ruby > /dev/null 2>&1; then
     echo "Setting up a user-based GEM_HOME"
     export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
     export PATH="$GEM_HOME/bin:$PATH"
