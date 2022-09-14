@@ -1,7 +1,11 @@
 alias ed='emacs --daemon'
 
+function forever() {
+    while :; do "$@"; sleep 2; done
+}
+
 function ec() {
- emacsclient -c -a "" "$*" &
+    emacsclient -c -a "" "$*" &
 }
 
 alias edk='emacsclient -e "(kill-emacs)"'
