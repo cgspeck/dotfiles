@@ -8,6 +8,8 @@ function ec() {
     emacsclient -c -a "" "$*" &
 }
 
+alias arch-cleanup='yay -Sc && docker system prune'
+
 alias edk='emacsclient -e "(kill-emacs)"'
 
 alias dmr="docker-machine restart local && eval \$(docker-machine env local)"
