@@ -33,6 +33,8 @@ alias gpl='git pull --rebase'
 alias gps='git push'
 alias gpsu='git push -u origin HEAD'
 alias grep='grep --color=auto'
+alias yarnandrebase='git add package.json && rm yarn.lock; yarn && ga yarn.lock && GIT_EDITOR=true git rebase --continue'
+alias grc='GIT_EDITOR=true git rebase --continue'
 alias grh='git reset --hard'
 alias gs='git status -sb'
 alias gsa='git stash apply'
@@ -42,6 +44,9 @@ alias gss='git stash save'
 alias wip='git commit -am WIP'
 
 alias heart="echo -e \"\xe2\x9d\xa4\""
+
+# typescript/node/jest
+alias jestdbg='node --inspect=0.0.0.0:9229 ./node_modules/.bin/jest --runInBand'
 
 # thanks Seb - command line safe search and replace across a project with vim
 alias vim-replace='ag -l "$0" && vim -c "bufdo %s/$0/$1/gc" $(ag -l "$0")'
