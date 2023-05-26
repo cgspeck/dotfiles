@@ -15,38 +15,20 @@ __dotfiles__common() {
   export AWS_REGION=ap-southeast-2
   export EDITOR=nvim
   export WINEARCH=win64
-  export RUBY_ENV=development
 
   # aliases
   source ~/.aliases
 
   # z directory jumper
   [ -f "$HOME/src/z/z.sh" ] && source ~/src/z/z.sh || echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
-}
+  zstyle ':completion:*' menu select
+  zstyle ':completion:*' rehash true
+  autoload -U promptinit
 
-__dotfiles__ruby_fallback() {
-  echo "Please install chruby via the package manager"
-  if which ruby > /dev/null 2>&1; then
-    echo "Setting up a user-based GEM_HOME"
-    export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-    export PATH="$GEM_HOME/bin:$PATH"
-  fi
-}
+  promptinit
 
-__dotfiles__golang() {
-  if which go > /dev/null 2>&1; then
-    echo "Setting up Golang"
-    export GOPATH=$HOME/go
-
-    if [ ! -d $GOPATH ]; then
-      echo "Creating $GOPATH"
-      mkdir $GOPATH
-    fi
-
-    export PATH="$GOPATH/bin:$PATH"
-  else
-    echo "Golang is not installed"
-  fi
+  # This will set the default prompt to the walters theme
+  prompt walters
 }
 
 __dotfiles__pyenv() {
@@ -80,34 +62,38 @@ __dotfiles__yarn_global_bin() {
 
 
 __dotfiles__common_tail() {
-  which direnv 1>/dev/null 2>&1 && eval "$(direnv hook bash)" || echo "Direnv is not installed"
-  __dotfiles__golang
+  which direnv 1>/dev/null 2>&1 && eval "$(direnv hook zsh)" || echo "Direnv is not installed"
   __dotfiles__pyenv
   __dotfiles__pipx
   __dotfiles__yarn_global_bin
 }
 
 __dotfiles__osx() {
-  if [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-    export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-    . "/usr/local/etc/profile.d/bash_completion.sh"
-    [[ kubectl ]] && source /dev/stdin <<<"$(kubectl completion bash)"
-  else
-    echo "Please install bash-completion"
+  if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
-  PS1='\A \w \n$ '
-  # if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  #   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-  #   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+  if [ -r "$(brew --prefix)/share/zsh-completions" ]; then
+    if type brew &>/dev/null; then
+        FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+        autoload -Uz compinit
+        compinit
+    fi
+    [[ kubectl ]] && source /dev/stdin <<<"$(kubectl completion zsh)"
+  else
+    echo "Please install zsh-completions"
+  fi
+
+  if [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+  fi
+
+  # if [ -s "$HOMEBREW_PREFIX/opt/zsh-git-prompt/zshrc.sh" ]; then
+  #   source "$HOMEBREW_PREFIX/opt/zsh-git-prompt/zshrc.sh"
   # fi
-
-  if [ -f "/usr/local/opt/chruby/share/chruby/chruby.sh" ]; then
-    source /usr/local/opt/chruby/share/chruby/chruby.sh
-    source /usr/local/opt/chruby/share/chruby/auto.sh
-  else
-    __dotfiles__ruby_fallback
-  fi
 }
 
 __dotfiles__ubuntu() {
@@ -116,13 +102,6 @@ __dotfiles__ubuntu() {
     source "/opt/bash-git-prompt/gitprompt.sh"
   else
     echo "Please install gitprompt using the install script in dotfiles"
-  fi
-
-  if [ -f "/usr/local/share/chruby/chruby.sh" ]; then
-    source /usr/local/share/chruby/chruby.sh
-    source /usr/local/share/chruby/auto.sh
-  else
-    __dotfiles__ruby_fallback
   fi
 
   if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
@@ -145,9 +124,9 @@ __dotfiles__ubuntu() {
   fi
 
   if type _init_completion > /dev/null; then
-    kubectl > /dev/null 2>&1 && source <(kubectl completion bash) || echo "Kubectl is not installed"
+    kubectl > /dev/null 2>&1 && source <(kubectl completion bash)
   else
-    echo "Please install bash-completion"
+    echo "Please install zsh-completion"
   fi
 
   if systemctl status swagger-editor --no-pager > /dev/null 2>&1; then
@@ -173,4 +152,4 @@ esac
 
 __dotfiles__common_tail
 
-[ -r ~/.bash_local ] && source ~/.bash_local
+[ -r ~/.zsh_local ] && source ~/.zsh_local
