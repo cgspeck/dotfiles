@@ -85,6 +85,10 @@ __dotfiles__common_tail() {
   __dotfiles__pyenv
   __dotfiles__pipx
   __dotfiles__yarn_global_bin
+
+  if [[ -f "$HOME/.cargo/env" ]]; then
+    source "$HOME/.cargo/env"
+  fi
 }
 
 __dotfiles__osx() {
