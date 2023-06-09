@@ -12,7 +12,6 @@ if ([[ -f $HOME/.zprofile ]]) && [[ ! -L $HOME/.zsh_env ]]; then
     echo "Please add 'source ~/.zsh_env' to ~/.zshrc (Arch) or ~/.zprofile (OSX)"
 fi
 
-[ ! -L $HOME/.aliases ] && ln -s "$(pwd)/aliases" $HOME/.aliases
 [ ! -L $HOME/.tmux.conf ] && ln -s "$(pwd)/tmux.conf" $HOME/.tmux.conf
 [ ! -L $HOME/.irbrc ] && ln -s "$(pwd)/irbrc" $HOME/.irbrc
 

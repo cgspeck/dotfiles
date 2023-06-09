@@ -1,3 +1,13 @@
+SOURCE=${BASH_SOURCE[0]}
+while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR=$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )
+  SOURCE=$(readlink "$SOURCE")
+  [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DOTFILES_DIR=$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )
+
+echo $DOTFILES_DIR
+
 __dotfiles__common() {
   if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
@@ -17,7 +27,7 @@ __dotfiles__common() {
   export WINEARCH=win64
 
   # aliases
-  source ~/.aliases
+  source "$DOTFILES_DIR/aliases"
 
   # z directory jumper
   [ -f "$HOME/src/z/z.sh" ] && source ~/src/z/z.sh || echo "Please clone z directory jumper to /src (git@github.com:rupa/z.git)"
@@ -93,6 +103,7 @@ __dotfiles__osx() {
     export NVM_DIR="$HOME/.nvm"
     \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
     \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+    \. "$DOTFILES_DIR/nvm/zsh_hook" # auto nvm use on cd
   fi
 
   # if [ -s "$HOMEBREW_PREFIX/opt/zsh-git-prompt/zshrc.sh" ]; then
