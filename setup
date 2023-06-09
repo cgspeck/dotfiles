@@ -1,20 +1,20 @@
 #! /bin/bash -e
 
-if [[ -f  $HOME/.bashrc ]] || [[ -f  $HOME/.bash_profile ]]; then
+if [[ -f  $HOME/.bashrc ]] || [[ -f $HOME/.bash_profile ]]; then
     if [[ ! -L $HOME/.bash_env ]]; then
-        ln -s $(pwd)/bash_env $HOME/.bash_env
+        ln -s "$(pwd)/bash_env" $HOME/.bash_env
         echo "Please add 'source ~/.bash_env' to ~/.bashrc (Arch) or ~/.bash_profile (OSX)"
     fi
 fi
 
-if (([[ -f  $HOME/.zprofile ]]) && [[ ! -L $HOME/.zsh_env ]]); then
-    ln -s $(pwd)/zsh_env $HOME/.zsh_env
+if ([[ -f $HOME/.zprofile ]]) && [[ ! -L $HOME/.zsh_env ]]; then
+    ln -s "$(pwd)/zsh_env" $HOME/.zsh_env
     echo "Please add 'source ~/.zsh_env' to ~/.zshrc (Arch) or ~/.zprofile (OSX)"
 fi
 
-[ ! -L $HOME/.aliases ] && ln -s $(pwd)/aliases $HOME/.aliases
-[ ! -L $HOME/.tmux.conf ] && ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
-[ ! -L $HOME/.irbrc ] && ln -s $(pwd)/irbrc $HOME/.irbrc
+[ ! -L $HOME/.aliases ] && ln -s "$(pwd)/aliases" $HOME/.aliases
+[ ! -L $HOME/.tmux.conf ] && ln -s "$(pwd)/tmux.conf" $HOME/.tmux.conf
+[ ! -L $HOME/.irbrc ] && ln -s "$(pwd)/irbrc" $HOME/.irbrc
 
 # Ubuntu/Arch
 [ -d $HOME/.config ] && [ -d $HOME/sync/scratch/insomnia/ ] && ln -s $HOME/sync/scratch/insomnia $HOME/.config/Insomnia
