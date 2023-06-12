@@ -4,5 +4,5 @@ if ! command -v brew &>/dev/null; then
 fi
 brew bundle install
 rm -f ~/.zcompdump; compinit
-chmod -R go-w '/opt/homebrew/share/zsh'
+chmod -R go-w "$(brew --prefix)/share/zsh"
 compaudit | xargs chmod g-w
