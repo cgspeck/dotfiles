@@ -21,6 +21,10 @@ __dotfiles__common() {
     export PATH="$HOME/.local/bin:$PATH"
   fi
 
+  if [ -d "$HOME/.cargo/bin" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+  fi
+
   export AWS_DEFAULT_REGION=ap-southeast-2
   export AWS_REGION=ap-southeast-2
   export EDITOR=nvim
