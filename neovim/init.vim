@@ -46,3 +46,6 @@ autocmd VimEnter * NERDTree | wincmd p
 """ Plugin config
 " vim-gitgutter
 set updatetime=100
+
+set mouse = ""
+
